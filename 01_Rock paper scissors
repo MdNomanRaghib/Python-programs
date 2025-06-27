@@ -1,0 +1,41 @@
+import random
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+items = [rock,paper,scissors]
+my_choice = int(input("Choose a number 0 for rock,1 for paper or 2 for scissors"))
+computer_choice = random.randint(0, 2)
+if my_choice in [0,1,2]:
+    print(items[my_choice])
+    print(items[computer_choice])
+if my_choice not in [ 0,1,2 ]:
+    print("You typed an invalid number, You lose")
+elif ( my_choice == 0 and computer_choice == 2 ) or ( my_choice == 1 and computer_choice == 0 ) or ( my_choice == 2 and computer_choice == 1):
+    print("You won")
+elif my_choice == computer_choice:
+    print ("Draw")
+else:
+    print("You lost")

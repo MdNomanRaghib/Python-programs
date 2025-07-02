@@ -1,0 +1,36 @@
+# TODO-1: Ask the user for input
+# TODO-2: Save data into dictionary {name: price}
+# TODO-3: Whether if new bids need to be added
+# TODO-4: Compare bids in dictionary
+logo = r'''
+                         ___________
+                         \         /
+                          )_______(
+                          |"""""""|_.-._,.---------.,_.-._
+                          |       | | |               | | ''-.
+                          |       |_| |_             _| |_..-'
+                          |_______| '-' `'---------'` '-'
+                          )"""""""(
+                         /_________\\
+                       .-------------.
+                      /_______________\\
+'''
+print(logo)
+continue_bid = "yes"
+bids_list = {}
+while continue_bid == "yes":
+    name = input("What is your name?:")
+    bid = input("What is your bid?: $")
+    bids_list[name] = bid
+    continue_bid = input("Are there any other bidders. Type yes or no").lower()
+    if continue_bid == "yes":
+        print("\n" * 20)
+
+max_bid = 0
+max_bidder = ""
+for key in bids_list:
+    #max(bids_list,bids_list[key].get)
+    if int(bids_list[key]) > max_bid:
+        max_bid = int(bids_list[key])
+        max_bidder = key
+print(f"The winner is {max_bidder} with a bid of {max_bid}")

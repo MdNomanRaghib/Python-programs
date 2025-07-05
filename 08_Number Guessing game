@@ -1,0 +1,41 @@
+logo = r'''
+ _______           _______  _______  _______   _________          _______    _                 _______  ______   _______  _______ 
+(  ____ \|\     /|(  ____ \(  ____ \(  ____ \  \__   __/|\     /|(  ____ \  ( (    /||\     /|(       )(  ___ \ (  ____ \(  ____ )
+| (    \/| )   ( || (    \/| (    \/| (    \/     ) (   | )   ( || (    \/  |  \  ( || )   ( || () () || (   ) )| (    \/| (    )|
+| |      | |   | || (__    | (_____ | (_____      | |   | (___) || (__      |   \ | || |   | || || || || (__/ / | (__    | (____)|
+| | ____ | |   | ||  __)   (_____  )(_____  )     | |   |  ___  ||  __)     | (\ \) || |   | || |(_)| ||  __ (  |  __)   |     __)
+| | \_  )| |   | || (            ) |      ) |     | |   | (   ) || (        | | \   || |   | || |   | || (  \ \ | (      | (\ (   
+| (___) || (___) || (____/\/\____) |/\____) |     | |   | )   ( || (____/\  | )  \  || (___) || )   ( || )___) )| (____/\| ) \ \__
+(_______)(_______)(_______/\_______)\_______)     )_(   |/     \|(_______/  |/    )_)(_______)|/     \||/ \___/ (_______/|/   \__/
+                                                                                                                                  
+'''
+import random
+print(logo)
+print("Welcome to the Number Guessing Game")
+print("I'm thinking of a number between 1 and 100.")
+number = random.randint(1,100)
+level = input("Choose a level: Easy or Hard\n").lower()
+attempts = 0
+if level == "easy":
+    attempts = 10
+elif level == 'hard':
+    attempts = 5
+else:
+    print("Make correct choice - easy or hard")
+
+def guessing_game(correct_number, guess_left):
+    should_continue = True
+    while should_continue == True and guess_left > 0:
+        guess = int(input(f"You have {guess_left} attempts remaining to make a guess. \n Make a guess : "))
+        if guess == correct_number:
+            print(f"You got it. The answer was {guess}")
+            should_continue = False
+        elif guess_left == 1:
+            print("You have run out of guesses. Refresh the page to run again.")
+        elif guess > correct_number:
+            print("Too High.\nGuess again.")
+        else:
+            print("Too Low.\nGuess again.")
+        guess_left -= 1
+if level == "easy" or level == "hard":
+    guessing_game(number,attempts)

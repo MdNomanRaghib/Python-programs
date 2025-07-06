@@ -1,0 +1,61 @@
+logo = r"""
+    __  ___       __             
+   / / / (_)___ _/ /_  ___  _____
+  / /_/ / / __ `/ __ \/ _ \/ ___/
+ / __  / / /_/ / / / /  __/ /    
+/_/ ///_/\__, /_/ /_/\___/_/     
+   / /  /____/_      _____  _____
+  / /   / __ \ | /| / / _ \/ ___/
+ / /___/ /_/ / |/ |/ /  __/ /    
+/_____/\____/|__/|__/\___/_/     
+"""
+
+vs = r"""
+ _    __    
+| |  / /____
+| | / / ___/
+| |/ (__  ) 
+|___/____(_)
+"""
+import random
+from game_data import data
+
+def match_details(account):
+      contender_name = account["name"]
+      contender_desc = account["description"]
+      contender_country = account["country"]
+      return f"{contender_name}, a {contender_desc}, from {contender_country}"
+
+def check_answer(guess,contender1_followers,contender2_followers):
+      if contender1_followers > contender2_followers:
+            return guess == "A"
+      else:
+            return guess == "B"
+
+personality2_details = random.choice(data)
+print(logo)
+
+right_answer = True
+score = 0
+while right_answer:
+      personality1_details = personality2_details
+      personality2_details = random.choice(data)
+      
+      print(f"Compare A: {match_details(personality1_details)}")
+      print(vs)
+      print(f"Against B: {match_details(personality2_details)}")
+      choice =  input("Who has more followers? Type 'A' or 'B' \n").upper()
+      
+      personality1_followers = personality1_details["follower_count"]
+      personality2_followers = personality2_details["follower_count"]
+      
+      result = check_answer(choice,personality1_followers,personality2_followers)
+      print("\n" * 20)
+      print(logo)
+      
+      if result:
+            score += 1
+            print(f"You're right! Current score = {score}")
+      else:
+            print(f"Sorry, that's wrong. Final score: {score}")
+            right_answer = False
